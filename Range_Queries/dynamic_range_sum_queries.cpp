@@ -162,7 +162,13 @@ ll merge(ll x,ll y) {
 }
 
 void update(segmentTreeNode<ll,int>& node,int x) {
-    return;
+    if(x!=int()) {
+        if(node.val != 0) {
+            node.val = x;
+            return;
+        }
+        node.val+=x;
+    }
 }
 
 void solve() {
@@ -173,8 +179,12 @@ void solve() {
     segmentTree<ll,int,merge,update> segTree(n,arr,0,0);
 
     while(q--) {
-        int l,r;cin>>l>>r;
-        cout<<segTree.query(l,r+1)<<endl;
+        int opt,l,r;cin>>opt>>l>>r;
+        if(opt == 1) {
+            segTree.modify(l,r);
+        } else {
+            cout<<segTree.query(l,r+1)<<endl;
+        }
     }
     
 }

@@ -158,7 +158,7 @@ public:
 };
 
 ll merge(ll x,ll y) {
-    return x+y;
+    return min(x,y);
 }
 
 void update(segmentTreeNode<ll,int>& node,int x) {
@@ -170,7 +170,7 @@ void solve() {
     int n,q;cin>>n>>q;
     vector<ll> arr(n);
     for(int i=0;i<n;i++) cin>>arr[i];
-    segmentTree<ll,int,merge,update> segTree(n,arr,0,0);
+    segmentTree<ll,int,merge,update> segTree(n,arr,INT_MAX,0);
 
     while(q--) {
         int l,r;cin>>l>>r;

@@ -158,7 +158,7 @@ public:
 };
 
 ll merge(ll x,ll y) {
-    return x+y;
+    return x^y;
 }
 
 void update(segmentTreeNode<ll,int>& node,int x) {
