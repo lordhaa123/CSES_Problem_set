@@ -32,27 +32,28 @@ void init_code() {
     #endif
 }
 
-vector<int> dp;
-
-int helper(int n){ 
-    if(n==0 || n==1) return 1;
-    if(dp[n]!=0) return dp[n];
-
-    for(int i=1;i<=6 && i<=n;i++) {
-        dp[n] = (dp[n] + helper(n-i)) % MOD;
-    } 
-    return dp[n];
-    
-}
 
 void solve() {
 
-    int n;cin>>n;
+    int n,x;cin>>n>>x;
+    vector<int> coins(n);
+    for(int i=0;i<n;i++) {
+        cin>>coins[i];
+    }
 
-    dp = vector<int>(n+1,0);
-    // cout<<"hi"<<endl;
-    cout<<helper(n);
+    vector<int> dp(x+1,0);
 
+    dp[0] = 1;
+
+    for(int i=0;i<n;i++) {
+        for(int j=1;j<=x;j++) {
+            if(coins[i]<=j) {
+                dp[j] = (dp[j] + dp[j-coins[i]])%MOD;
+            }
+        }
+    }
+
+    cout<<dp[x]<<endl;
 
 }
 
